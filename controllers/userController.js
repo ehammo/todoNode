@@ -1,25 +1,30 @@
 'use strict'
 // why use strict? https://www.w3schools.com/js/js_strict.asp
 module.exports = function (tables) {
-  var userTable
+  var UserTable
   
   class UserController {
     
     constructor (tables) {
-      userTable = tables.User
+      UserTable = tables.User
     }
 
     createUser (User) {
+      console.log('create user')
+      console.log(User)
       return new Promise(function (resolve, reject) {
         UserTable.create(
           User
         ).then((returnValue) => {
+          console.log('then')
+          console.log(returnValue)
           // returnValue can be null?
           if (!returnValue) {
             reject(new Error('error'))
           }
           resolve(returnValue)
         }).catch((error) => {
+          console.log('catch')
           reject(error)
         })
       })
