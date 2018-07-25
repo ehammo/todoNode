@@ -2,32 +2,19 @@
 // why use strict? https://www.w3schools.com/js/js_strict.asp
 module.exports = function (tables) {
   var UserTable
+  var type
+  var genericController
   
   class UserController {
     
     constructor (tables) {
       UserTable = tables.User
+      type = 'User'
+      genericController = require('./genericController')(UserTable)
     }
 
     createUser (User) {
-      console.log('create user')
-      console.log(User)
-      return new Promise(function (resolve, reject) {
-        UserTable.create(
-          User
-        ).then((returnValue) => {
-          console.log('then')
-          console.log(returnValue)
-          // returnValue can be null?
-          if (!returnValue) {
-            reject(new Error('error'))
-          }
-          resolve(returnValue)
-        }).catch((error) => {
-          console.log('catch')
-          reject(error)
-        })
-      })
+      return genericController.create(User)
     }
 
     readUser (email) {
