@@ -4,11 +4,7 @@ var sendResponse = require('../util')
 module.exports = function (userController) {
 
   app.post('/', function (req, res) {
-    userController.createUser(req.body).then((User) => {
-      res.send(User)
-    }).catch((error) => {
-      res.send(error)
-    })
+    sendResponse(res, userController.createUser(req.body))
   })
   
   app.get('/', function (req, res) {
@@ -18,30 +14,16 @@ module.exports = function (userController) {
     } else {
       promise = userController.readAllUsers()
     }
-    promise.then((User) => {
-      res.send(User)
-    }).catch((error) => {
-      res.send(error)
-    })
+    sendResponse(res, promise)
   })
 
   app.put('/', function (req, res) {
-    userController.updateUser(req.query.email, req.body).then((returnObject) => {
-      res.send(returnObject)
-    }).catch((error) => {
-      res.send(error)
-    })
+    sendResponse(res, userController.updateUser(req.query.email, req.body))
   })
 
   app.delete('/', function (req, res) {
-    userController.deleteUser(req.query.email).then((returnValue) => {
-      res.send(returnValue)
-    }).catch((error) => {
-      res.send(error)
-    })
+    sendResponse(res, userController.deleteUser(req.query.email))
   })
 
-  
-  
   return app;
 }
