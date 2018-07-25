@@ -1,12 +1,14 @@
-var Sequelize = require('sequelize') // sequelize for database
+var Sequelize = require('sequelize') 
 const config = require('./')
 // const env = process.env.NODE_ENV || 'development'
 
 module.exports = () => {
+  console.log(config)
   var connection = new Sequelize(config.db, config.user, config.password, {
     host: config.host,
     dialect: config.dialect,
-    dialectOptions: config.dialectOptions
+    dialectOptions: config.dialectOptions,
+    operatorsAliases:config.operatorsAliases
   }) // connect to database
   // app.use(passport.initialize())
   // app.use(passport.session())
