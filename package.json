@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "nodemon server.js",
     "dev-win": "set NODE_ENV=development && nodemon server.js",
+    "dev-ubu": "export NODE_ENV=development && nodemon server.js",
     "prod": "set NODE_ENV=production && nodemon server.js",
     "dev-test": "gulp dev-test",
     "prod-test": "mocha test/test.js"
