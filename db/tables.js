@@ -1,6 +1,8 @@
 var Sequelize = require('sequelize')
 
 module.exports = function (connection) {
+  
+  // Define the tables
   var User = connection.define('User', {
     name: Sequelize.STRING,
     email: {
@@ -20,12 +22,13 @@ module.exports = function (connection) {
   })
 
 
-  // cardinalidades
+  // Define cardinalities
   User.hasMany(Task)
   User.hasMany(Tag)
   Task.hasMany(Tag)
 
-  connection.sync() // create tables if dont exist
+  // create tables if dont exist
+  connection.sync()
 
   var tables = {
     User,

@@ -10,6 +10,7 @@ module.exports = function (tables) {
     constructor (tables) {
       UserTable = tables.User
       type = 'User'
+      // Use generic controller to basic Crud
       genericController = require('./genericController')(UserTable)
     }
 
@@ -41,6 +42,8 @@ module.exports = function (tables) {
       }
       return genericController.delete(where, type)
     }
+
+    // Define other method that won't use generic Controller
   }
   return new UserController(tables)
 }

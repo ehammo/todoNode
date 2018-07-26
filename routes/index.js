@@ -1,4 +1,7 @@
 module.exports = (app, controllers) => {
+
+  // Declare all routes that are going to be used
+
   var userRoutes = require('./userRoute')(controllers.userController)
   app.use('/user/', userRoutes)
 

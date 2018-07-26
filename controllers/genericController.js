@@ -32,7 +32,6 @@ module.exports = function (table) {
     }
 
     create(object) {
-        console.log("create generic")
         return this.sendResponse(table.create(object), 'Unable to create')
     }
 
