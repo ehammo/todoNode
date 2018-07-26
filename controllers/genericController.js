@@ -18,13 +18,14 @@ module.exports = function (table) {
                 if (!returnValue) {
                     reject(new Error(errorMessage))
                 }
-                if(successMessage != null && len(successMessage)>0) {
-                    resolve(returnValue+ successMessage)
+                if(successMessage != null && successMessage.length>0) {
+                    resolve(returnValue+' '+successMessage)
                 } else {
                     resolve(returnValue)
                 }
             }).catch((error) => {
                 console.log('catch')
+                console.log(error)
                 reject(error)
             })
         })

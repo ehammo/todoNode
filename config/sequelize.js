@@ -3,7 +3,6 @@ const config = require('./')
 // const env = process.env.NODE_ENV || 'development'
 
 module.exports = () => {
-  console.log(config)
   var connection = new Sequelize(config.db, config.user, config.password, {
     host: config.host,
     dialect: config.dialect,

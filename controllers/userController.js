@@ -18,71 +18,28 @@ module.exports = function (tables) {
     }
 
     readUser (email) {
-      return new Promise(function (resolve, reject) {
-        UserTable.findOne(
-          {
-            where: {
-              email: email
-            }
-          }
-        ).then((User) => {
-          if (!User) {
-            reject(new Error('No registered User with this Id'))
-          }
-          resolve(User)
-        }).catch((error) => {
-          reject(error)
-        })
-      })
+      var where = {
+        email: email
+      }
+      return genericController.read(where)
     }
 
     readAllUsers () {
-      return new Promise(function (resolve, reject) {
-        UserTable.findAll().then((Users) => {
-          if (!Users) {
-            reject(new Error('No registered Users'))
-          }
-          resolve(Users)
-        })
-      })
+      return genericController.readAll()
     }
 
     updateUser (email, User) {
-      return new Promise(function (resolve, reject) {
-        UserTable.update(
-          User,
-          {
-            where: {
-              email: email
-            }
-          }).then((returnValue) => {
-          // returnValue can be null?
-          if (!returnValue) {
-            reject(new Error('erro'))
-          }
-          resolve('Updated ' + returnValue + ' User(s) sucessfully')
-        }).catch((error) => {
-          reject(error)
-        })
-      })
+      var where = {
+        email: email
+      }
+      return genericController.update(where, type, User)
     }
 
     deleteUser (email) {
-      return new Promise(function (resolve, reject) {
-        UserTable.destroy(
-          {
-            where: {
-              email: email
-            }
-          }).then((returnValue) => {
-          if (returnValue === 0) {
-            reject(new Error('Nenhum elemento deletado'))
-          }
-          resolve('Deleted ' + returnValue + ' User(s) sucessfully')
-        }).catch((error) => {
-          reject(error)
-        })
-      })
+      var where =  {
+        email: email
+      }
+      return genericController.delete(where, type)
     }
   }
   return new UserController(tables)
