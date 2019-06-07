@@ -4,9 +4,9 @@ module.exports = function (tables) {
   var UserTable
   var type
   var genericController
-  
+
   class UserController {
-    
+
     constructor (tables) {
       UserTable = tables.User
       type = 'User'
@@ -20,7 +20,9 @@ module.exports = function (tables) {
 
     readUser (email) {
       var where = {
-        email: email
+        email: {
+          $eq: email
+        }
       }
       return genericController.read(where)
     }
@@ -31,14 +33,18 @@ module.exports = function (tables) {
 
     updateUser (email, User) {
       var where = {
-        email: email
+        email: {
+          $eq: email
+        }
       }
       return genericController.update(where, type, User)
     }
 
     deleteUser (email) {
       var where =  {
-        email: email
+        email: {
+          $eq: email
+        }
       }
       return genericController.delete(where, type)
     }
